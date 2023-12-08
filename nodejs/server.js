@@ -6,8 +6,8 @@ app.use(express.json());
 //DB 연결 구문
 const db = sql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: '12345',
+  user: '****',
+  password: '*****',
   database: 'example',
 });
 //
