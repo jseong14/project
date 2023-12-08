@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+  <title>Autofarm</title>
+</head>
+
+<body>
+  <!--navbar 설정-->
+  <nav class="navbar navbar-expand navbar-light" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="home" style="font-size: 1.5em;">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="data">Data <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="graph">Graph</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div>
+    <h1 class="display"><span style="font-weight:bold; font-size:1em">Data Values</span>
+      <button type="button" class="btn btn-outline-primary">
+        <a href="javascript:location.reload()" target="_self">Refresh</a>
+    </h1>
+    <p class="lead"><span style="font-weight:bold"> Refresh를 눌러 최신 데이터를 갱신해보세요!</span></p>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">토양수분</th>
+        <th scope="col">가스</th>
+        <th scope="col">온도</th>
+        <th scope="col">조도</th>
+        <th scope="col">습도</th>
+        <th scope="col">날짜</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach(a=> { %>
+        <tr>
+          <td>
+            <%=a.soil%>
+          </td>
+          <td>
+            <%=a.gas%>
+          </td>
+          <td>
+            <%=a.light%>
+          </td>
+          <td>
+            <%=a.temp%>
+          </td>
+          <td>
+            <%=a.humi%>
+          </td>
+          <td>
+            <%=a.date%>
+          </td>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
+</body>
+
+</html>
