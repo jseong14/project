@@ -17,7 +17,7 @@ namespace SmartFarm
     public partial class Form1 : Form
     {
 
-        string Conn = "Server=localhost;Database=example;Uid=root;Pwd=12345;";
+        string Conn = "Server=localhost;Database=example;Uid=****;Pwd=*****;";
 
         public Form1()
         {
