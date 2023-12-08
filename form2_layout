@@ -1,0 +1,105 @@
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+namespace SmartFarm
+{
+    public partial class Form2 : Form
+    {
+        string Conn = "Server=localhost;Database=example;Uid=*****;Pwd=*****;";
+
+
+        public Form2()
+        {
+            InitializeComponent();
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+
+
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void DrawGraphForSensor(string sensorName, Color seriesColor)
+        {
+            textBox1.Text = $"{sensorName} 그래프";
+
+            using (MySqlConnection conn = new MySqlConnection(Conn))
+            {
+                DataSet ds = new DataSet();
+                string sql = "select * from autofarm order by date desc limit 10";
+                MySqlDataAdapter adpt = new MySqlDataAdapter(sql, conn);
+                adpt.Fill(ds, "autofarm");
+
+                // 차트 시리즈 초기화
+                chart1.Series[0].Points.Clear();
+
+                // 색상 설정
+                chart1.Series[0].Color = seriesColor;
+
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    int value = int.Parse(ds.Tables[0].Rows[i][sensorName.ToLower()].ToString());
+                    chart1.Series[0].Points.AddXY(i, value);
+                }
+            }
+        }
+
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DrawGraphForSensor("gas", Color.Black);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DrawGraphForSensor("soil", Color.SaddleBrown);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DrawGraphForSensor("light", Color.DarkOrange);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DrawGraphForSensor("temp", Color.Red);
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DrawGraphForSensor("humi", Color.Blue);
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
